@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FIFA World Cup 2026™ — VIP Final Viewing Party</title>
+  <meta name="description" content="Exclusive VIP Invitation to the FIFA World Cup 2026™ Final Viewing Party, hosted by Commercial Bank of Ethiopia and Visa.">
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ============ 1. LOADING SCREEN ============ -->
+  <div id="loading-screen" class="loading-overlay">
+    <div class="video-background-container">
+      <video id="loading-video" autoplay loop muted playsinline>
+        <source src="assets/loading.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <div class="video-darkener"></div>
+    </div>
+    
+    <div class="loading-content">
+      <div class="loading-eyebrow">EXCLUSIVE INVITATION</div>
+      <h1 class="loading-title">FIFA WORLD CUP 2026™</h1>
+      <h2 class="loading-subtitle">Final Viewing Party</h2>
+      
+      <div class="loading-hosts">
+        <span class="host-intro">Hosted by</span>
+        <div class="loading-partner-logos">
+          <!-- CBE loading logo with text -->
+          <div class="loading-partner-block">
+            <img src="/assets/brand/cbe-logo-transparent.png" alt="Commercial Bank of Ethiopia" class="loading-logo loading-logo-cbe">
+            <div class="loading-partner-name">
+              <span class="partner-name-am">የኢትዮጵያ ንግድ ባንክ</span>
+              <span class="partner-name-en">Commercial Bank of Ethiopia</span>
+            </div>
+          </div>
+          <span class="host-divider">&amp;</span>
+          <img src="/assets/brand/visa-logo.svg" alt="Visa" class="loading-logo loading-logo-visa">
+        </div>
+      </div>
+      
+      <div class="loading-bottom">
+        <span class="loading-text">Loading...</span>
+        <div class="progress-bar-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MAIN CONTAINER ============ -->
+  <div id="app-container" class="app-container hidden">
+
+    <!-- ============ 2. HOME SCREEN ============ -->
+    <section id="home-screen" class="screen active">
+      <div class="hero-container">
+        <!-- Floating brand ambient glows -->
+        <div class="glow-cbe" aria-hidden="true"></div>
+        <div class="glow-visa" aria-hidden="true"></div>
+
+        <header class="hero-header">
+          <div class="brand-badge">EXCLUSIVE VIP INVITATION</div>
+        </header>
+
+        <main class="hero-main">
+          <h1 class="hero-title">
+            <span class="title-fifa">FIFA WORLD CUP 2026™</span>
+            <span class="title-event">FINAL VIEWING PARTY</span>
+          </h1>
+          <p class="hero-subtitle">You are cordially invited to join us for an extraordinary evening of sports, dining, and premium camaraderie.</p>
+
+          <!-- Details Grid -->
+          <div class="details-grid">
+            <div class="detail-card">
+              <div class="detail-icon">📅</div>
+              <div class="detail-label">Date</div>
+              <div class="detail-value">Sunday, July 19, 2026</div>
+            </div>
+            
+            <div class="detail-card">
+              <div class="detail-icon">🕒</div>
+              <div class="detail-label">Time</div>
+              <div class="detail-value">8:00 PM Onwards</div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon">📍</div>
+              <div class="detail-label">Venue</div>
+              <div class="detail-value">VIP Lounge, CBE HQ<br><small>Addis Ababa, Ethiopia</small></div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon">👔</div>
+              <div class="detail-label">Dress Code</div>
+              <div class="detail-value">Black Tie / Formal</div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon">🍽</div>
+              <div class="detail-label">Dinner</div>
+              <div class="detail-value">Gourmet Dinner Included</div>
+            </div>
+
+            <div class="detail-card">
+              <div class="detail-icon">⚽</div>
+              <div class="detail-label">Live Match</div>
+              <div class="detail-value">Full Final Match Screening</div>
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button type="button" id="btn-start-rsvp" class="gold-btn-glowing">
+              <span class="btn-text">RSVP NOW</span>
+              <span class="btn-glow"></span>
+            </button>
+          </div>
+        </main>
+
+        <footer class="hero-footer">
+          <div class="footer-partner-strip">
+            <span class="partner-label">Proudly hosted by</span>
+            <div class="partner-logos-row">
+
+              <!-- CBE Partner Block -->
+              <a href="https://www.combanketh.et/" target="_blank" rel="noopener" aria-label="Commercial Bank of Ethiopia" class="partner-block partner-block-cbe">
+                <img src="/assets/brand/cbe-logo-transparent.png" alt="CBE Emblem" class="partner-logo partner-logo-cbe">
+                <div class="partner-name-block">
+                  <span class="partner-name-am">የኢትዮጵያ ንግድ ባንክ</span>
+                  <span class="partner-name-en">Commercial Bank of Ethiopia</span>
+                </div>
+              </a>
+
+              <span class="partner-ampersand">&amp;</span>
+
+              <!-- Visa Partner Block -->
+              <a href="https://www.visa.com/" target="_blank" rel="noopener" aria-label="Visa" class="partner-block">
+                <img src="/assets/brand/visa-logo.svg" alt="Visa" class="partner-logo partner-logo-visa">
+              </a>
+
+            </div>
+          </div>
+        </footer>
+      </div>
+    </section>
+
+    <!-- ============ 3. RSVP FORM ============ -->
+    <section id="form-screen" class="screen">
+      <div class="form-container">
+        <button type="button" id="btn-back-home" class="back-link">
+          <span class="arrow">←</span> Return to Invitation
+        </button>
+
+        <div class="form-header">
+          <h2 class="form-title">VIP Attendance Confirmation</h2>
+          <p class="form-subtitle">Please verify your details below to secure your seat at this exclusive viewing party.</p>
+        </div>
+
+        <form id="rsvp-form" class="rsvp-form" novalidate>
+          <div class="form-grid">
+            <div class="input-group">
+              <label for="fullName">Full Name <span class="required">*</span></label>
+              <input type="text" id="fullName" name="name" required placeholder="As it appears on your passport/ID" autocomplete="name">
+              <span class="error-msg" id="err-fullName"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="emailAddress">Email Address <span class="required">*</span></label>
+              <input type="email" id="emailAddress" name="email" required placeholder="example@domain.com" autocomplete="email">
+              <span class="error-msg" id="err-emailAddress"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="phoneNumber">Phone Number <span class="required">*</span></label>
+              <input type="tel" id="phoneNumber" name="phone" required placeholder="+251 ... or +..." autocomplete="tel">
+              <span class="error-msg" id="err-phoneNumber"></span>
+            </div>
+
+            <div class="input-group">
+              <label for="organization">Organization <span class="required">*</span></label>
+              <input type="text" id="organization" name="organization" required placeholder="Company or Institution">
+              <span class="error-msg" id="err-organization"></span>
+            </div>
+
+
+
+            <div class="input-group">
+              <label for="mealPreference">Meal Preference</label>
+              <select id="mealPreference" name="mealPreference">
+                <option value="" disabled selected>Select dietary preference...</option>
+                <option value="No Restrictions">Standard Gourmet Menu (No Restrictions)</option>
+                <option value="Vegetarian">Vegetarian</option>
+                <option value="Vegan">Vegan</option>
+                <option value="Halal">Halal</option>
+                <option value="Gluten Free">Gluten Free</option>
+              </select>
+            </div>
+
+            <div class="input-group full-width">
+              <label for="specialRequests">Special Requests / Allergies</label>
+              <textarea id="specialRequests" name="specialRequests" rows="3" placeholder="Any accessibility or dietary requirements..."></textarea>
+            </div>
+          </div>
+
+          <div id="form-error-banner" class="error-banner hidden"></div>
+
+          <button type="submit" id="btn-submit-rsvp" class="gold-btn-glowing full-width">
+            <span class="btn-text">CONFIRM ATTENDANCE</span>
+            <span class="btn-glow"></span>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ 4. SUCCESS SCREEN ============ -->
+    <section id="success-screen" class="screen">
+      <div class="success-container">
+        
+        <div class="success-icon-wrapper">
+          <div class="success-circle">
+            <span class="check-mark">✓</span>
+          </div>
+          <div class="success-pulse"></div>
+        </div>
+
+        <h2 class="success-title">Thank You!</h2>
+        <p class="success-subtitle">Your RSVP has been successfully received.</p>
+        
+        <div class="success-card">
+          <div class="ticket-header">
+            <span class="ticket-brand">FIFA WORLD CUP 2026™ VIP TICKET</span>
+          </div>
+
+          <div class="ticket-body">
+            <div class="ticket-info">
+              <div class="ticket-row">
+                <span class="ticket-label">Guest Name</span>
+                <span class="ticket-value" id="ticket-guest-name">Blen Gebre</span>
+              </div>
+              <div class="ticket-row">
+                <span class="ticket-label">Organization</span>
+                <span class="ticket-value" id="ticket-guest-org">Commercial Bank of Ethiopia</span>
+              </div>
+              <div class="ticket-row">
+                <span class="ticket-label">Reservation ID</span>
+                <span class="ticket-value gold-text" id="ticket-res-id">VIP-2026-000145</span>
+              </div>
+              <div class="ticket-row">
+                <span class="ticket-label">Venue</span>
+                <span class="ticket-value">VIP Lounge, CBE Headquarters, Addis Ababa</span>
+              </div>
+              <div class="ticket-row">
+                <span class="ticket-label">Date &amp; Time</span>
+                <span class="ticket-value">July 19, 2026 · 8:00 PM</span>
+              </div>
+            </div>
+
+            <div class="ticket-qr-section">
+              <div class="qr-border-box">
+                <img id="ticket-qr-img" src="" alt="Ticket QR Code">
+              </div>
+              <span class="qr-instruction">Please present this QR code upon arrival at the venue.</span>
+            </div>
+          </div>
+
+          <div class="ticket-actions">
+            <button type="button" id="btn-download-qr" class="action-btn-outline">
+              💾 Save QR Ticket
+            </button>
+          </div>
+        </div>
+
+        <p class="email-note">A confirmation email has been dispatched to your address.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- JavaScript file -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Staff Portal — CBE &amp; Visa VIP Event Check-in</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- HTML5 QR Code Library from CDN -->
+  <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="checkin.css">
+</head>
+<body>
+
+  <div class="portal-container">
+    <!-- Header -->
+    <header class="portal-header">
+      <div class="brand-group">
+        <span class="portal-eyebrow">RECEPTION STAFF SYSTEM</span>
+        <h1 class="portal-title">CBE &amp; Visa VIP Check-in</h1>
+      </div>
+      <div class="system-status">
+        <span class="status-indicator"></span> Live Database Connection
+      </div>
+    </header>
+
+    <!-- Main Workspace Grid -->
+    <div class="portal-workspace">
+      
+      <!-- Left Panel: Scanner and Input -->
+      <section class="panel scanner-panel">
+        <h2 class="panel-title">Ticket Scanner</h2>
+        
+        <!-- QR Code Camera Reader -->
+        <div class="scanner-container">
+          <div id="qr-reader"></div>
+          <div class="scanner-instructions">
+            Position the guest's ticket QR code within the frame to scan.
+          </div>
+        </div>
+
+        <!-- Manual Lookup Fallback -->
+        <div class="manual-lookup-box">
+          <div class="divider">
+            <span>OR ENTER ID MANUALLY</span>
+          </div>
+          <div class="lookup-form">
+            <input type="text" id="manual-id-input" placeholder="e.g. VIP-2026-000100" autocomplete="off">
+            <button type="button" id="btn-manual-lookup">Look Up</button>
+          </div>
+          <div class="scanner-controls">
+            <button type="button" id="btn-toggle-camera" class="toggle-cam-btn">Toggle Scanner Camera</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Panel: Status Dashboard -->
+      <section class="panel status-panel">
+        <h2 class="panel-title">Guest Verification</h2>
+        
+        <!-- Empty State -->
+        <div id="state-empty" class="state-view active">
+          <div class="info-icon">🔍</div>
+          <h3>Awaiting Scan</h3>
+          <p>Scan a QR code or enter a Reservation ID to inspect registration status.</p>
+        </div>
+
+        <!-- Scanning/Loading State -->
+        <div id="state-loading" class="state-view">
+          <div class="spinner"></div>
+          <h3>Fetching Reservation...</h3>
+        </div>
+
+        <!-- Error/Not Found State -->
+        <div id="state-error" class="state-view state-alert-error">
+          <div class="status-badge alert-red">✘</div>
+          <h3 class="alert-title">Reservation Not Found</h3>
+          <p id="error-message-text" class="alert-desc">The reservation ID is invalid or could not be found in the database.</p>
+          <button type="button" class="btn-reset-view">Clear Lookup</button>
+        </div>
+
+        <!-- Found State — Not Checked In Yet -->
+        <div id="state-found-clean" class="state-view state-alert-success">
+          <div class="status-badge alert-green">✔</div>
+          <h3 class="alert-title">Reservation Valid</h3>
+          
+          <div class="guest-details-card">
+            <div class="guest-detail-row">
+              <span class="label">Guest Name</span>
+              <span class="value" id="val-clean-name">Blen Gebre</span>
+            </div>
+            <div class="guest-detail-row">
+              <span class="label">Organization</span>
+              <span class="value" id="val-clean-org">Commercial Bank of Ethiopia</span>
+            </div>
+            <div class="guest-detail-row">
+              <span class="label">Reservation ID</span>
+              <span class="value id-value" id="val-clean-id">VIP-2026-000145</span>
+            </div>
+            <div class="guest-detail-row">
+              <span class="label">Meal Preference</span>
+              <span class="value" id="val-clean-meal">Standard Gourmet Menu</span>
+            </div>
+            <div class="guest-detail-row">
+              <span class="label">Special Requests</span>
+              <span class="value" id="val-clean-reqs">None</span>
+            </div>
+            <div class="guest-detail-row checkin-status-row">
+              <span class="label">Check-in Status</span>
+              <span class="value badge badge-pending">Confirmed — Not Checked In</span>
+            </div>
+          </div>
+
+          <button type="button" id="btn-perform-checkin" class="btn-checkin-action">
+            Check In Guest
+          </button>
+        </div>
+
+        <!-- Found State — Already Checked In -->
+        <div id="state-found-already" class="state-view state-alert-warning">
+          <div class="status-badge alert-orange">⚠</div>
+          <h3 class="alert-title">Already Checked In</h3>
+          
+          <div class="guest-details-card">
+            <div class="guest-detail-row">
+              <span class="label">Guest Name</span>
+              <span class="value" id="val-dup-name">Blen Gebre</span>
+            </div>
+            <div class="guest-detail-row">
+              <span class="label">Organization</span>
+              <span class="value" id="val-dup-org">Commercial Bank of Ethiopia</span>
+            </div>
+            <div class="guest-detail-row">
+              <span class="label">Reservation ID</span>
+              <span class="value id-value" id="val-dup-id">VIP-2026-000145</span>
+            </div>
+            <div class="guest-detail-row highlight-time-row">
+              <span class="label">Check-in Timestamp</span>
+              <span class="value time-value" id="val-dup-time">5:42 PM</span>
+            </div>
+            <div class="guest-detail-row checkin-status-row">
+              <span class="label">Status</span>
+              <span class="value badge badge-checked">Checked In</span>
+            </div>
+          </div>
+
+          <div class="warning-banner">
+            This QR code ticket was already scanned. Duplicate entry is prohibited.
+          </div>
+          
+          <button type="button" class="btn-reset-view btn-reset-view-secondary">Scan Next Ticket</button>
+        </div>
+
+      </section>
+
+    </div>
+  </div>
+
+  <!-- JavaScript logic -->
+  <script src="checkin.js"></script>
+</body>
+</html>
