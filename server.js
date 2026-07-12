@@ -416,10 +416,32 @@ app.post('/api/rsvp', async (req, res) => {
           auth:   { user: process.env.SMTP_USER, pass: process.env.SMTP_PASS },
           tls:    { rejectUnauthorized: false }
         });
+        const plainTextBody = `
+Dear ${name.trim()},
+
+Your reservation for the FIFA World Cup 2026 Final Viewing Party has been confirmed.
+
+Reservation ID: ${reservationId}
+Date: Sunday, July 19, 2026
+Time: 8:00 PM Onwards
+Venue: VIP Lounge, Commercial Bank of Ethiopia HQ, Addis Ababa, Ethiopia
+Supporting Team: ${team || '—'}
+Guests: ${guests}
+Fan Points: ${fanPoints}
+
+You can view your QR Code entry pass here:
+${qrImageUrl}
+
+Thank you,
+Commercial Bank of Ethiopia & Visa International
+        `.trim();
+
         await transporter.sendMail({
           from:        `"CBE & Visa VIP Events" <${process.env.SMTP_USER}>`,
           to:          cleanEmail,
+          replyTo:     process.env.SMTP_USER,
           subject:     `✅ Your FIFA World Cup 2026 VIP Pass — ${reservationId}`,
+          text:        plainTextBody,
           html:        emailBodyHTML,
           attachments: [{ filename: `VIP-Pass-QRCode-${reservationId}.png`, content: qrBuffer, cid: 'qrcode' }]
         });
