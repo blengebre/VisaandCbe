@@ -122,11 +122,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname)));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-// Serve QR code PNG images for external access
-app.use('/qrcodes', express.static(path.join(__dirname, 'data', 'sent_emails')));
-
 // Ensure local email backup directory exists
-const EMAILS_DIR = path.join(__dirname, 'data', 'sent_emails');
+const EMAILS_DIR = process.env.VERCEL ? path.join('/tmp', 'sent_emails') : path.join(__dirname, 'data', 'sent_emails');
+// Serve QR code PNG images for external access
+app.use('/qrcodes', express.static(EMAILS_DIR));
 if (!fs.existsSync(EMAILS_DIR)) {
   fs.mkdirSync(EMAILS_DIR, { recursive: true });
 }
@@ -585,7 +584,7 @@ app.post('/api/rsvp/:id/halftime', async (req, res) => {
 // ─── API: Serve QR Code Image ────────────────────────────────────────
 app.get('/qrcodes/:id.png', (req, res) => {
   const id = req.params.id;
-  const filePath = path.join(__dirname, 'data', 'sent_emails', `qrcode-${id}.png`);
+  const filePath = path.join(EMAILS_DIR, `qrcode-${id}.png`);
   if (fs.existsSync(filePath)) {
     res.sendFile(filePath);
   } else {
