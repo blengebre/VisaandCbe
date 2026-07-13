@@ -1565,7 +1565,7 @@ body {
 .corner-brand-cbe {
   bottom: 8px !important;    /* Forces it down perfectly */
   left: 24px;
-  top: auto;
+  top: 830px;
   right: auto;
 }
 
@@ -1655,6 +1655,7 @@ body {
   .corner-brand-cbe {
     bottom: 4px !important; /* Pushes CBE extra close to the bottom on mobile */
     left: 14px;
+    top:850px
   }
 
   .corner-cbe-block .corner-logo {
